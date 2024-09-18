@@ -89,7 +89,7 @@ data_dist_melt$time2<-""
 data_dist_melt$couple<-""
 data_dist_melt$time_dif<-""
 
-time_dict<-c("S1"=1,"S2"=12, "S3"=24,"S4"=48,"S5"=96,"S6"=168,"S7"=336)
+time_dict<-c("S1"=1,"S2"=12, "S3"=24,"S4"=48,"S5"=96,"S6"=168,"S7"=240)
 #Adding the time difference to the frame
 for (i in seq_len(NROW(data_dist_melt))){
   sample_time<-strsplit(data_dist_melt$sample_names[i],"_")[[1]][2]
@@ -115,8 +115,8 @@ ggplot(data_dist_melt_distinct, aes(x = time_dif, y = value, color=couple))+
 
 ##Calculating SNR
 full_name<-c("CC_1","CT_1","CC_12","CT_12","CC_24","CT_24","CC_48","CT_48",
-             "CC_96","CT_96","CC_168","CT_168","CC_336","CT_336")
-time_scale<-c(1,1,12,12,24,24,48,48,96,96,168,168,336,336)
+             "CC_96","CT_96","CC_168","CT_168","CC_240","CT_240")
+time_scale<-c(1,1,12,12,24,24,48,48,96,96,168,168,240,240)
 pair<-rep(c("CC","CT"),7)
 MTT_final<-data.frame(full_name,time_scale,pair)
 MTT_final$mean<-0
@@ -163,7 +163,7 @@ bartlett.test(c(data_dist_melt_distinct$value[data_dist_melt_distinct$couple=="C
 t.test(data_dist_melt_distinct$value[data_dist_melt_distinct$couple=="CC" & data_dist_melt_distinct$time_dif==1], data_dist_melt_distinct$value[data_dist_melt_distinct$couple=="CT" & data_dist_melt_distinct$time_dif==1], var.equal=T)
 
 ##CALCULAING T-TEST PVALUES FORALL TIME POINTS
-time_diffs <- c(1, 12, 24, 48,96, 168, 336)
+time_diffs <- c(1, 12, 24, 48,96, 168, 240)
 
 # Initialize a data frame to store the p-values
 MTT_significance_p_vals <- data.frame(
